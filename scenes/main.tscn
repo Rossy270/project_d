@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://21j7cjpvx5kn"]
+
+[ext_resource type="Script" uid="uid://cqkaelfaccpst" path="res://scripts/main/main.gd" id="1_o5qli"]
+[ext_resource type="Resource" uid="uid://c0shaqs3dsvva" path="res://data/grid/default.tres" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dsalh81klgg5e" path="res://scenes/cursor/cursor.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dc15iikhhuimn" path="res://scenes/maps/default_map.tscn" id="3_jyhfs"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("map")]
+script = ExtResource("1_o5qli")
+grid = ExtResource("2_jyhfs")
+map = NodePath("DefaultMap")
+
+[node name="DefaultMap" parent="." instance=ExtResource("3_jyhfs")]
+
+[node name="Cursor" parent="." instance=ExtResource("2_sugp2")]

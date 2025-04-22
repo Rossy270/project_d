@@ -1,0 +1,18 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo da dungeon -->
+  <rect width="16" height="16" fill="#1a1a1a"></rect>
+  
+  <!-- Degraus da escada -->
+  <rect x="3" y="4" width="4" height="1" fill="#444"></rect>
+  <rect x="4" y="6" width="4" height="1" fill="#444"></rect>
+  <rect x="5" y="8" width="4" height="1" fill="#444"></rect>
+  <rect x="6" y="10" width="4" height="1" fill="#444"></rect>
+
+  <!-- Personagem simples (cabeça + corpo) -->
+  <rect x="2" y="2" width="1" height="1" fill="#f4c542"></rect> <!-- Cabeça -->
+  <rect x="2" y="3" width="1" height="2" fill="#2a9d8f"></rect> <!-- Corpo -->
+  <rect x="1" y="3" width="1" height="1" fill="#2a9d8f"></rect> <!-- Braço esq -->
+  <rect x="3" y="3" width="1" height="1" fill="#2a9d8f"></rect> <!-- Braço dir -->
+  <rect x="2" y="5" width="1" height="1" fill="#264653"></rect> <!-- Perna esq -->
+  <rect x="3" y="5" width="1" height="1" fill="#264653"></rect> <!-- Perna dir -->
+</svg>
