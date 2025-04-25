@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://br8ecihibdek5"]
+
+[ext_resource type="Script" uid="uid://dtea3g82a2wh8" path="res://scripts/overlays/unit_path_overlay.gd" id="1_2fl4w"]
+[ext_resource type="Texture2D" uid="uid://cfvrnbnxdwvx" path="res://assets/Tiles/tile_0061.png" id="1_31fbw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_np4ku"]
+texture = ExtResource("1_31fbw")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_r56ri"]
+sources/0 = SubResource("TileSetAtlasSource_np4ku")
+
+[node name="UnitPathOverlay" type="TileMapLayer"]
+modulate = Color(0, 1, 1, 1)
+tile_set = SubResource("TileSet_r56ri")
+script = ExtResource("1_2fl4w")

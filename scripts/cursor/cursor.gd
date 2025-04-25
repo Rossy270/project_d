@@ -26,12 +26,8 @@ var cell := Vector2i.ZERO:
 		moved.emit(_cell)
 		timer.start()
 
-func _ready() -> void:
-	print("chamei ", name)
+func setup() -> void:
 	timer.wait_time = ui_cooldown
-	
-	if not grid.has_map():
-		await grid.map_register
 	
 	position = grid.calculate_map_position(cell)
 

@@ -1,15 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://21j7cjpvx5kn"]
+[gd_scene load_steps=6 format=3 uid="uid://21j7cjpvx5kn"]
 
-[ext_resource type="Script" uid="uid://cqkaelfaccpst" path="res://scripts/main/main.gd" id="1_o5qli"]
-[ext_resource type="Resource" uid="uid://c0shaqs3dsvva" path="res://data/grid/default.tres" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://8gr1n32heqoy" path="res://scripts/board/board.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dsalh81klgg5e" path="res://scenes/cursor/cursor.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dc15iikhhuimn" path="res://scenes/maps/default_map.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://ce3tbd3ebqb33" path="res://scenes/units/unit.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://br8ecihibdek5" path="res://scenes/overlays/unit_path_overlay.tscn" id="6_tefeu"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("map")]
-script = ExtResource("1_o5qli")
-grid = ExtResource("2_jyhfs")
-map = NodePath("DefaultMap")
+[node name="Main" type="Node2D"]
 
-[node name="DefaultMap" parent="." instance=ExtResource("3_jyhfs")]
+[node name="Board" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("1_tbgi4")
 
-[node name="Cursor" parent="." instance=ExtResource("2_sugp2")]
+[node name="MapOverlay" type="Node2D" parent="Board"]
+
+[node name="UnitPathOverlay" parent="Board/MapOverlay" instance=ExtResource("6_tefeu")]
+
+[node name="DefaultMap" parent="Board/MapOverlay" instance=ExtResource("3_jyhfs")]
+
+[node name="Cursor" parent="Board" instance=ExtResource("2_sugp2")]
+
+[node name="Unit" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(37, 23)
+move_speed = 50.0

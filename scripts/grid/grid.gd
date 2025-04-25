@@ -1,7 +1,6 @@
 extends Resource
 class_name Grid
 
-signal map_register
 
 var _current_map: Map
 
@@ -11,11 +10,6 @@ func set_current_map(map: Map) -> void:
 		return
 	
 	_current_map = map
-	map_register.emit()
-
-
-func has_map() -> bool:
-	return _current_map != null
 
 
 func calculate_map_position(grid_position: Vector2i) -> Vector2:
@@ -39,7 +33,7 @@ func get_moveable_cells() -> PackedVector2Array:
 
 
 func as_index(cell: Vector2i) -> int:
-	var size = _current_map.get_used_cells().size()
+	var size = _current_map.get_used_rect().size
 	return cell.x + size.x * cell.y
 
 
