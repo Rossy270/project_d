@@ -2,34 +2,45 @@ extends Node2D
 class_name Main
 
 @export var grid: Grid
-@export var map: Map
-@export var cursor: Cursor
-@export var unit: Unit
-@onready var unit_path_overlay: UnitPathOverlay = $UnitPathOverlay
 
-var last_cursor_pos := Vector2i.ZERO
+@onready var default_map: Map = $DefaultMap
+@onready var cursor: Cursor = $Cursor
+@onready var unit: Unit = $Unit
+@onready var unit_path_overlay: UnitPathOverlay = $UnitPathOverlay
+@onready var move_range_overlay: MoveRangeOverlay = $MoveRangeOverlay
+
+var last_mouse_cell := Vector2i.ZERO
+var path_utils: PathfinderUtils
 
 func _ready() -> void:
-	grid.set_current_map(map)
+	grid.set_current_map(default_map)
 	cursor.setup()
-	unit.setup(grid)
-	
-	#var test = [Vector2i(3,2), Vector2i(3,3), Vector2i(3,4), Vector2i(4,4), Vector2i(5,4)]
-	#var packed = PackedVector2Array(test)
-	#
-	#unit.walk_along(packed)
-	var rect_start := Vector2(4, 4)
-	var rect_end := Vector2(10, 8)
+	cursor.moved.connect(_on_cursor_moved)
+	cursor.accept_pressed.connect(_on_cursor_accept_pressed)
+	unit_path_overlay.initialize(grid)
+	path_utils = PathfinderUtils.new(grid)
+	move_range_overlay.draw(path_utils.get_reachable_cells(unit.cell, unit.move_range))
 
-	# The following lines generate an array of points filling the rectangle from rect_start to rect_end.
-	var points := []
-	# In a for loop, writing a number or expression that evaluates to a number after the "in"
-	# keyword implicitly calls the range() function.
-	# For example, "for x in 3" is a shorthand for "for x in range(3)".
-	for x in rect_end.x - rect_start.x + 1:
-		for y in rect_end.y - rect_start.y + 1:
-			points.append(rect_start + Vector2(x, y))
+
+func _on_cursor_moved(cell: Vector2i) -> void:
+	if cell == last_mouse_cell:
+		return
+		
+	unit_path_overlay.clear()
+	last_mouse_cell = cell
 	
-	unit_path_overlay.initialize(points, grid)
+	unit_path_overlay.draw(unit.cell, cell, unit.move_range)
+
+
+func _on_cursor_accept_pressed(cell: Vector2i) -> void:
+	move_range_overlay.clear()
+	unit_path_overlay.stop()
+	var path = grid.calculate_path(unit.cell, cell)
 	
-	unit_path_overlay.draw(rect_start, Vector2(8, 7))
+	var move_action = MoveAction.new(path)
+	
+	unit.execute_action(move_action)
+	
+	await unit.action_finished
+	
+	move_range_overlay.draw(path_utils.get_reachable_cells(unit.cell, unit.move_range))

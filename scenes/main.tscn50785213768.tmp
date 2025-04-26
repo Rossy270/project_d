@@ -14,13 +14,12 @@ grid = ExtResource("2_jyhfs")
 
 [node name="DefaultMap" parent="." instance=ExtResource("3_jyhfs")]
 
-[node name="MoveRangeOverlay" parent="." instance=ExtResource("7_o6xl0")]
-
 [node name="UnitPathOverlay" parent="." instance=ExtResource("6_tefeu")]
+
+[node name="MoveRangeOverlay" parent="." instance=ExtResource("7_o6xl0")]
 
 [node name="Cursor" parent="." instance=ExtResource("2_sugp2")]
 
 [node name="Unit" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(4, 18)
-attack_range = null
-grid = ExtResource("2_jyhfs")
+move_speed = 50.0

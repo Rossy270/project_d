@@ -36,7 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		cell = grid.calculate_grid_coordinates(event.position)
 	elif event.is_action_pressed("cursor_clicked"):
-		accept_pressed.emit(cell)
+		accept_pressed.emit(_cell)
 		get_viewport().set_input_as_handled()
 	
 	var should_move := event.is_pressed()
