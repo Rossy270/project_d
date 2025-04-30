@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://21j7cjpvx5kn"]
+[gd_scene load_steps=13 format=3 uid="uid://21j7cjpvx5kn"]
 
 [ext_resource type="Script" uid="uid://cqkaelfaccpst" path="res://scripts/main/main.gd" id="1_o5qli"]
 [ext_resource type="Resource" uid="uid://c0shaqs3dsvva" path="res://data/grid/default.tres" id="2_jyhfs"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://c10dgtfndak8k" path="res://scripts/status/base_stats.gd" id="9_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://chec751bbyr20" path="res://assets/Tiles/tile_0096.png" id="9_eb6dy"]
 [ext_resource type="Script" uid="uid://bsgb2sy61rqo4" path="res://scripts/turn_manger/step.gd" id="10_choun"]
-[ext_resource type="Script" uid="uid://b57i7ei8riyla" path="res://scripts/turn_manger/player_steps/choosing_action.gd" id="11_eb6dy"]
 [ext_resource type="Script" uid="uid://3v7sl2usuqvf" path="res://scripts/turn_manger/player_steps/moving.gd" id="11_ya4ey"]
 
 [sub_resource type="Resource" id="Resource_0ld40"]
@@ -74,8 +73,7 @@ script = ExtResource("10_choun")
 metadata/_custom_type_script = "uid://bsgb2sy61rqo4"
 
 [node name="ChoosingAction" type="Node" parent="TurnManager/ProcessingTurn/CheckingController/PlayerControlled"]
-unique_name_in_owner = true
-script = ExtResource("11_eb6dy")
+script = ExtResource("10_choun")
 metadata/_custom_type_script = "uid://bsgb2sy61rqo4"
 
 [node name="Moving" type="Node" parent="TurnManager/ProcessingTurn/CheckingController/PlayerControlled/ChoosingAction"]

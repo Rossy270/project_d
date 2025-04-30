@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c003b8irnnv18"]
+
+[ext_resource type="Script" uid="uid://bi6jg8iegox61" path="res://scripts/units/hero_unity.gd" id="1_3qr3m"]
+[ext_resource type="Texture2D" uid="uid://c5mlo503ggf5k" path="res://assets/Tiles/tile_0085.png" id="2_yj61j"]
+
+[node name="Hero" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_3qr3m")
+sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://bi6jg8iegox61"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yj61j")
+offset = Vector2(0, -4)

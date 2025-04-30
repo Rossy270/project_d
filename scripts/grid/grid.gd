@@ -1,10 +1,9 @@
 extends Resource
 class_name Grid
 
-signal grid_update
-
 var _current_map: Map
 var _occupied_cells: Dictionary = {}
+
 
 func set_current_map(map: Map) -> void:
 	if map == _current_map:
@@ -12,7 +11,6 @@ func set_current_map(map: Map) -> void:
 	
 	_current_map = map
 	_occupied_cells.clear()
-	grid_update.emit()
 
 
 func calculate_map_position(grid_position: Vector2i) -> Vector2:
@@ -50,7 +48,7 @@ func set_cell_free(cell: Vector2i) -> void:
 
 func _is_valid_tile(grid_position: Vector2i) -> bool:
 	var tile_data = _current_map.get_cell_tile_data(grid_position)
-	if tile_data and tile_data.get_custom_data("cost") > 0 and not is_cell_occupied(grid_position):
+	if tile_data and tile_data.get_custom_data("cost") > 0:
 		return true
 	return false
 

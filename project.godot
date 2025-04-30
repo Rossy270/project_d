@@ -15,6 +15,12 @@ run/main_scene="uid://21j7cjpvx5kn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CombatObserver="*res://scripts/combat_system/combat_observer.gd"
+CursorObeserve="*res://scripts/cursor/cursor_obeserve.gd"
+GameBoardOverlay="*res://scenes/overlays/game_board_overlay.tscn"
+
 [display]
 
 window/size/viewport_width=320
@@ -23,6 +29,12 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[global_group]
+
+enemy=""
+party=""
+turn_manager=""
 
 [input]
 

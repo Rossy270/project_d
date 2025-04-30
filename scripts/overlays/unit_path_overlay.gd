@@ -4,10 +4,12 @@ class_name UnitPathOverlay
 var _grid: Grid
 var current_path: Array
 var _pathfinder: PathfinderUtils
+var is_initializer := false
 
 func initialize(grid: Grid) -> void:
 	_grid = grid
 	_pathfinder = PathfinderUtils.new(_grid)
+	is_initializer = true
 
 
 func draw(cell_start: Vector2i, cell_end: Vector2i, move_range: int) -> void:
@@ -24,4 +26,6 @@ func draw(cell_start: Vector2i, cell_end: Vector2i, move_range: int) -> void:
 
 
 func stop() -> void:
+	_grid = null
+	is_initializer = false
 	clear()

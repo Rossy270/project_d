@@ -3,11 +3,13 @@ class_name Unit
 
 signal action_finished(action_name)
 
-@export var move_range := 6
-@export var attack_range := 1
-@export var grid: Grid
-@onready var sprite: Sprite2D = $Texture
+@export var move_points := 1
+@export var stats: BaseStats
+@export var actions: Array[UnitAction]
+@export var is_player_controlled := false
+@export var sprite: Sprite2D
 
+var grid: Grid
 var cell := Vector2i.ZERO:
 	set(value):
 		cell = grid.grid_clamp(value)
@@ -17,7 +19,19 @@ var current_action: UnitAction = null
 
 
 func _ready() -> void:
-	grid.grid_update.connect(_on_grid_update)
+	if not stats:
+		stats = BaseStats.new()
+	else:
+		stats = stats.duplicate()
+	
+	stats.reinitialize()
+
+
+func initializer(_grid: Grid) -> void:
+	grid = _grid
+	cell = grid.calculate_grid_coordinates(position)
+	grid.set_cell_occupied(cell, self)
+	CombatObserver.register_unit(self)
 
 
 func execute_action(action: UnitAction) -> void:
@@ -28,11 +42,6 @@ func execute_action(action: UnitAction) -> void:
 	current_action = action
 	current_action.action_finished.connect(_on_action_finished)
 	action.start(self)
-
-
-func _on_grid_update() -> void:
-	cell = grid.calculate_grid_coordinates(position)
-	position = grid.calculate_map_position(cell)
 
 
 func _on_action_finished(action_name: String) -> void:

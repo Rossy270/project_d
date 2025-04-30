@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm6p4bl108wtf"]
+
+[ext_resource type="PackedScene" uid="uid://fcwtb533lsx8" path="res://scenes/overlays/move_range_overlay.tscn" id="1_5e5ab"]
+[ext_resource type="Script" uid="uid://cumbg8ov84eda" path="res://scripts/overlays/game_board_overlay.gd" id="1_232a7"]
+[ext_resource type="PackedScene" uid="uid://br8ecihibdek5" path="res://scenes/overlays/unit_path_overlay.tscn" id="2_232a7"]
+
+[node name="GameBoardOverlay" type="Node2D"]
+script = ExtResource("1_232a7")
+
+[node name="MoveRangeOverlay" parent="." instance=ExtResource("1_5e5ab")]
+
+[node name="UnitPathOverlay" parent="." instance=ExtResource("2_232a7")]
